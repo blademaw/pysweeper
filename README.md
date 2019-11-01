@@ -10,6 +10,7 @@ Pysweeper isn't at all meant to be a replacement for Microsoft's Minesweeper, as
 ## Controls & Playing the Game
 
 Just incase anyone actually wants to try playing Minesweeper with this.
+Run `minegame.py`.
 
 ### Rules
 

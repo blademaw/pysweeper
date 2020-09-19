@@ -1,6 +1,6 @@
 # Minesweeper Board Maker
 
-import copy, random, pprint, texttable, termtables
+import copy, random, pprint, termtables
 
 def findAdj(a, b, board):
     mineAmt = 0
@@ -57,9 +57,11 @@ def display(board):
         for j in range(len(disBoard[0])):
             if disBoard[i][j] == 0:
                 disBoard[i][j] = " "
-    t = texttable.Texttable()
-    t.add_rows(disBoard)
-    print(t.draw())
+    t = termtables.to_string(
+        disBoard,
+        style=termtables.styles.ascii_thin_double
+    )
+    print(t)
 
 def newdisplay(board, uncovered, flaglist):
     disBoard = copy.deepcopy(board)

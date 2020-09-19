@@ -87,7 +87,6 @@ MINES LEFT: 10
 
 ## Built with
 
-* [texttable](https://pypi.org/project/texttable/) - For creating ASCII game board
 * [termtables](https://pypi.org/project/termtables/) - For displaying game board
 
 # Changelog
@@ -98,3 +97,4 @@ MINES LEFT: 10
 - Added user input validation for board initialization & commands
 - Removed restart function (to be added)
 - Converted globals to arguments
+- Converted all ASCII tables to termtables

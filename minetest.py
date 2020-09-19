@@ -16,10 +16,7 @@ def getOthers(a, b, board):
 
     return res, coords
 
-unc = []
-
-def getExpands(board, pos, around, coords):
-    global unc
+def getExpands(board, pos, around, coords, unc):
     notFound = True
     while notFound:
         notFound = False
@@ -34,10 +31,13 @@ def getExpands(board, pos, around, coords):
     return unc
 
 def auxG(board, pos):
-    global unc
     unc = []
     unc += [pos]
     a, b = pos
-    return sorted(getExpands(board, pos, getOthers(a, b, board)[0], getOthers(a, b, board)[1]))
+    return sorted(getExpands(board, pos, getOthers(a, b, board)[0], getOthers(a, b, board)[1], unc))
 
 
+# myB = [ [0, 0, 0, 0],
+#         [0, 'M', 0, 'M']]
+
+# print(auxG(myB, (0, 0)))

@@ -10,7 +10,7 @@ Pysweeper isn't at all meant to be a replacement for Microsoft's Minesweeper, as
 ## Controls & Playing the Game
 
 Just incase anyone actually wants to try playing Minesweeper with this.
-Run `minegame.py`.
+Run `mine_game.py`.
 
 ### Rules
 
@@ -28,7 +28,7 @@ Run `minegame.py`.
 ### Input
 
 * Users can either uncover tiles or flag them.
-	* if a user has already uncovered a tile and attempts to uncover it again, this will result in the game attempting to clear the eight adjacent tiles, clearing them if the number of flagged mines matches that of the selected tile, but will refuse to uncover the tiles if there aren't enough flags.
+	* uncovering an already-uncovered tile will result in uncovering the surrounding adjacent 8 tiles, but will refuse to uncover the tiles if there is an incorrect number of flags.
 
 * Uncovering tiles is done by `>>>u x y`, where `x` and `y` are coordinates on the grid, and `(1, 1)` is the top-left corner.
 * Flagging tiles is similarly done with an `f` rather than a `u`.
@@ -87,9 +87,14 @@ MINES LEFT: 10
 
 ## Built with
 
+* [texttable](https://pypi.org/project/texttable/) - For creating ASCII game board
 * [termtables](https://pypi.org/project/termtables/) - For displaying game board
 
 # Changelog
 
 ### Version 1.0.0
 - Published to github
+### Version 1.0.01
+- Added user input validation for board initialization & commands
+- Removed restart function (to be added)
+- Converted globals to arguments

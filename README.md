@@ -4,8 +4,7 @@ A simple implementation of Minesweeper in Python 3
 
 ## Description
 
-Pysweeper is a text-based implementation of Minesweeper using Python 3. The majority of the project was made in one night, and is therefore bound to be fatally inefficient and riddled with bugs, but it works!
-Pysweeper isn't at all meant to be a replacement for Microsoft's Minesweeper, as the user has to enter the coordinates of each tile they wish to uncover.
+Pysweeper is a text-based implementation of Minesweeper using Python 3. The majority of the project was made in one night, and is therefore bound to be inefficient and riddled with bugs, but it works! Pysweeper isn't at all meant to be a replacement for Microsoft's Minesweeper, as the user has to enter the coordinates of each tile they wish to uncover.
 
 ## Controls & Playing the Game
 

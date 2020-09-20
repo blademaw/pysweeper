@@ -52,16 +52,39 @@ def makeboard(height, length, mines, conlist):
     return board, minelist
 
 def display(board):
+    """Displays the intiial gameboard given as argument via termtables"""
+    # create copy of board, 
     disBoard = copy.deepcopy(board)
     for i in range(len(disBoard)):
         for j in range(len(disBoard[0])):
             if disBoard[i][j] == 0:
                 disBoard[i][j] = " "
+    
+    # adding row and column numbers
+    disBoard = [[i for i in range(1, len(disBoard[0])+1)]] + disBoard + [[i for i in range(1, len(disBoard[0])+1)]]
     t = termtables.to_string(
         disBoard,
         style=termtables.styles.ascii_thin_double
     )
-    print(t)
+    t = t.split("\n")
+    del t[0]
+
+    # accounting for digits >8 (to tab board further)
+    j = 1
+    tabspace = int((len(str(len(disBoard))) % 8 - len(str(len(disBoard)))) / 8) + 1
+    print("\n\t"*tabspace + t[0].replace("|", " "))
+    print()
+    print("\t"*tabspace + t[1])
+    for i in range(2, len(t)-3):
+        if i % 2 == 0:
+            t[i] = str(j) + "\t"*tabspace + t[i] + " "*8 + str(j)
+            j += 1
+        else:
+            t[i] = "\t"*tabspace + t[i]
+        print(t[i])
+    print("\t"*tabspace + t[-3])
+    print("\n\t"*tabspace + t[-2].replace("|", " "))
+    print()
 
 def newdisplay(board, uncovered, flaglist):
     disBoard = copy.deepcopy(board)
@@ -75,11 +98,28 @@ def newdisplay(board, uncovered, flaglist):
                     disBoard[i][j] = " "
             else:
                 disBoard[i][j] = "[]"
+    disBoard = [[i for i in range(1, len(disBoard[0])+1)]] + disBoard + [[i for i in range(1, len(disBoard[0])+1)]]
     t = termtables.to_string(
         disBoard,
         style=termtables.styles.ascii_thin_double
     )
-    print(t)
+    t = t.split("\n")
+    del t[0]
+    j = 1
+    tabspace = int((len(str(len(disBoard))) % 8 - len(str(len(disBoard)))) / 8) + 1
+    print("\n\t"*tabspace + t[0].replace("|", " "))
+    print()
+    print("\t"*tabspace + t[1])
+    for i in range(2, len(t)-3):
+        if i % 2 == 0:
+            t[i] = str(j) + "\t"*tabspace + t[i] + " "*8 + str(j)
+            j += 1
+        else:
+            t[i] = "\t"*tabspace + t[i]
+        print(t[i])
+    print("\t"*tabspace + t[-3])
+    print("\n\t"*tabspace + t[-2].replace("|", " "))
+    print()
 
 def locSurround(a, b, board):
     oA, oB = a, b
@@ -101,8 +141,6 @@ def locSurround(a, b, board):
 
     return mineAmt, res, coords
 
-
-# myB = [ [0, 0, 0, 0],
-#         [0, 'M', 0, 'M']]
-
-# print(locSurround(0, 0, myB))
+# x = [[i for i in range(1,10)]]
+# t = termtables.to_string(x, style=termtables.styles.markdown)
+# print(t)

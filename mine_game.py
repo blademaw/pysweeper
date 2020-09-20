@@ -30,7 +30,14 @@ def hideboard(board):
     return hidden
 
 def startMove(uncovered, height, length, mines, board):
-    move = [(int(i)-1) for i in ((input("Coordinates \"x y\" >>>\t")).split(" "))[1:]]
+    accepted = False
+    while not accepted:
+        try:
+            move = [(int(i)-1) for i in ((input("Coordinates \"x y\" >>>\t")).lower().split(" "))[1:]]
+            assert len(move) == 2
+            accepted = True
+        except Exception:
+            print("\nFor your first move, enter a 'u' for 'uncover',\nseparated by a space, then the board's dimensions. E.g. '>>> u 7 2'\n")
     b, a = move
     surList = mine_makeboard.locSurround(a, b, board)[2]
 
@@ -114,14 +121,13 @@ def mainGame(gameRunning, finalBoard, uncovered, flaglist, minelist, mines):
         accepted = False
         while not accepted:
             try:
-                turnIn = (input("\n>>> ")).split(" ")
+                turnIn = (input("\n>>> ")).lower().split(" ")
                 b, a = int(turnIn[1])-1, int(turnIn[2])-1
-                assert turnIn[0] in ['u', 'f']
+                assert turnIn[0] in ['u ', 'f ']
                 assert a < len(finalBoard) and b < len(finalBoard[0])
                 accepted = True
             except Exception:
                 print("Please enter a letter for uncovering/flagging (u, f) and coordinates,\nall separated by a space, within the board's dimensions. E.g. '>>> u 7 2'")
-
         if turnIn[0] == 'u':
             uncover(uncovered, flaglist, finalBoard, (a, b))
         elif turnIn[0] == "f":
@@ -132,3 +138,7 @@ def mainGame(gameRunning, finalBoard, uncovered, flaglist, minelist, mines):
 
 if __name__ == "__main__":
     startGame()
+    # ib = mine_makeboard.initboard(9, 9)
+    # sb = hideboard(ib)
+    # mine_makeboard.display(sb)
+    

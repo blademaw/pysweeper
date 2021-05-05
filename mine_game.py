@@ -94,7 +94,7 @@ def winning(gameRunning, flaglist, uncovered, minelist, finalBoard):
     flaglist = minelist
     mine_makeboard.newdisplay(finalBoard, uncovered, flaglist)
     print("\n\n\nYou win!\n\n\n")
-    input("Press any key to exit...")
+    input("Press Enter to exit...")
     sys.exit()
 
 def startGame():
@@ -123,7 +123,7 @@ def mainGame(gameRunning, finalBoard, uncovered, flaglist, minelist, mines):
             try:
                 turnIn = (input("\n>>> ")).lower().split(" ")
                 b, a = int(turnIn[1])-1, int(turnIn[2])-1
-                assert turnIn[0] in ['u ', 'f ']
+                assert turnIn[0] in ['u', 'f']
                 assert a < len(finalBoard) and b < len(finalBoard[0])
                 accepted = True
             except Exception:
